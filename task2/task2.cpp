@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-char c; // текущий символ
+char c; 
 
 void gc() { cin >> c; }
 
@@ -22,7 +22,7 @@ bool scan_G() {
 			{
 				CS = A;
 			}
-			else if (c == '^') // ^ - символ пустой строки 
+			else if (c == '^')
 			{
 				CS = S;
 			}
@@ -38,7 +38,7 @@ bool scan_G() {
 			{
 				CS = A;
 			}
-			else if (c == '^') {  // ^ - символ пустой строки 
+			else if (c == '^') {  
 				CS = S;
 			}
 			else {
@@ -49,7 +49,7 @@ bool scan_G() {
 			if (c == '0') {
 				CS = A;
 			}
-			else if (c == '^') {  // ^ - символ пустой строки 
+			else if (c == '^') { 
 				CS = S;
 			}
 			else {
