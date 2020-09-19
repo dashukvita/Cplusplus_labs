@@ -24,7 +24,7 @@ public:
 			else width = _width;
 		}
 		catch (int) {
-			cout << endl << "Øèðèíà ìåíüøå 0!" << endl;
+			cout << endl << "Ширина ìåíüøå 0!" << endl;
 		}
 	}
 	void setBoxLength(int _length) {
