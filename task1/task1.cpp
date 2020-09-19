@@ -1,4 +1,4 @@
-// Task2C++.cpp: определяет точку входа для консольного приложения.
+// Task2C++.cpp: Г®ГЇГ°ГҐГ¤ГҐГ«ГїГҐГІ ГІГ®Г·ГЄГі ГўГµГ®Г¤Г  Г¤Г«Гї ГЄГ®Г­Г±Г®Г«ГјГ­Г®ГЈГ® ГЇГ°ГЁГ«Г®Г¦ГҐГ­ГЁГї.
 //
 
 #include "stdafx.h"
@@ -24,7 +24,7 @@ public:
 			else width = _width;
 		}
 		catch (int) {
-			cout << endl << "Ширина меньше 0!" << endl;
+			cout << endl << "ГГЁГ°ГЁГ­Г  Г¬ГҐГ­ГјГёГҐ 0!" << endl;
 		}
 	}
 	void setBoxLength(int _length) {
@@ -36,7 +36,7 @@ public:
 			else length = _length;
 		}
 		catch (int) {
-			cout << endl << "Длина меньше 0!" << endl;
+			cout << endl << "Г„Г«ГЁГ­Г  Г¬ГҐГ­ГјГёГҐ 0!" << endl;
 		}
 	}
 	void setBoxHeight(int _height) {
@@ -48,7 +48,7 @@ public:
 			else height = _height;
 		}
 		catch (int) {
-			cout << endl << "Высота меньше 0!" << endl;
+			cout << endl << "Г‚Г»Г±Г®ГІГ  Г¬ГҐГ­ГјГёГҐ 0!" << endl;
 		}
 	}
 
@@ -57,7 +57,7 @@ public:
 	int getBoxHeight() const {return height;}
 #pragma endregion
 
-#pragma region Конструкторы & Деструктор
+#pragma region ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г» & Г„ГҐГ±ГІГ°ГіГЄГІГ®Г°
 	Box(int a = 0, int b = 0, int c = 0) {
 		try {
 			if (a < 0 || b < 0 || c < 0) {
@@ -73,7 +73,7 @@ public:
 			}
 		}
 		catch (int) {
-			cout << endl << "Отрицательные поля!" << endl;
+			cout << endl << "РЁРёСЂРёРЅР° РјРµРЅСЊС€Рµ 0!" << endl;
 		}
 	 }
 
@@ -86,21 +86,21 @@ public:
 
 	~Box()
 	{
-		cout << "\nДеcтруктор Box сработал!\n";
+		cout << "\nГ„ГҐcГІГ°ГіГЄГІГ®Г° Box Г±Г°Г ГЎГ®ГІГ Г«!\n";
 	}
 #pragma endregion
 
-#pragma region Методы
+#pragma region ГЊГҐГІГ®Г¤Г»
 	int area() const { return 2 * (width * length + length * height + width * height); }
 
 	void print() {
-		printf("\nДлина %d", length);
-		printf("\nШирина %d", width);
-		printf("\nВысота %d", height);
+		printf("\nГ„Г«ГЁГ­Г  %d", length);
+		printf("\nГГЁГ°ГЁГ­Г  %d", width);
+		printf("\nГ‚Г»Г±Г®ГІГ  %d", height);
 	}
 #pragma endregion
 
-#pragma region Перегрузка операций
+#pragma region ГЏГҐГ°ГҐГЈГ°ГіГ§ГЄГ  Г®ГЇГҐГ°Г Г¶ГЁГ©
 	Box & operator = (const Box & b)
 	{
 		width = b.width;
@@ -138,7 +138,7 @@ public:
 			}
 		}
 		catch (int) {
-			cout << "Нельзя уменьшить, отрицательный ответ!" << endl;
+			cout << "ГЌГҐГ«ГјГ§Гї ГіГ¬ГҐГ­ГјГёГЁГІГј, Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»Г© Г®ГІГўГҐГІ!" << endl;
 		}
 		return *this;
 	}
@@ -159,7 +159,7 @@ public:
 		}
 		catch (int)
 		{
-			cout << "Нельзя уменьшить, отрицательный ответ!" << endl;
+			cout << "ГЌГҐГ«ГјГ§Гї ГіГ¬ГҐГ­ГјГёГЁГІГј, Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»Г© Г®ГІГўГҐГІ!" << endl;
 		}
 		return box;
 	}
@@ -188,7 +188,7 @@ public:
 			else win_width = w_width;
 		}
 		catch (int) {
-			cout << endl << "Недопустимая ширина окна." << endl;
+			cout << endl << "ГЌГҐГ¤Г®ГЇГіГ±ГІГЁГ¬Г Гї ГёГЁГ°ГЁГ­Г  Г®ГЄГ­Г ." << endl;
 		}
 	}
 	void setWBoxHeight(int w_height) {
@@ -200,7 +200,7 @@ public:
 			else win_height = w_height;
 		}
 		catch (int) {
-			cout << endl << "Недопустимая высота окна." << endl;
+			cout << endl << "ГЌГҐГ¤Г®ГЇГіГ±ГІГЁГ¬Г Гї ГўГ»Г±Г®ГІГ  Г®ГЄГ­Г ." << endl;
 		}
 	}
 
@@ -208,7 +208,7 @@ public:
 	int getWBoxWidth() const { return win_width; }
 #pragma endregion
 
-#pragma region Конструкторы и деструктор
+#pragma region ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г» ГЁ Г¤ГҐГ±ГІГ°ГіГЄГІГ®Г°
 	WBox(int w = 0, int h = 0, int a = 0, int b = 0, int c = 0) : Box(a, b, c) {
 		try {
 			if (w < 0 || h < 0 || w > getBoxWidth() || h > getBoxHeight()) {
@@ -222,7 +222,7 @@ public:
 			}
 		}
 		catch (int) {
-			cout << endl << "Недопустимые значения параметров окна!" << endl;
+			cout << endl << "ГЌГҐГ¤Г®ГЇГіГ±ГІГЁГ¬Г»ГҐ Г§Г­Г Г·ГҐГ­ГЁГї ГЇГ Г°Г Г¬ГҐГІГ°Г®Гў Г®ГЄГ­Г !" << endl;
 		}
 	}
 
@@ -233,19 +233,19 @@ public:
 
 
 	~WBox() {
-		cout << "Сработал деструктор класса WBox!" << endl;
+		cout << "Г‘Г°Г ГЎГ®ГІГ Г« Г¤ГҐГ±ГІГ°ГіГЄГІГ®Г° ГЄГ«Г Г±Г±Г  WBox!" << endl;
 	}
 #pragma endregion
 
-#pragma region Методы
+#pragma region ГЊГҐГІГ®Г¤Г»
 	int area() const {
 		return Box::area() - win_width * win_height;
 	}
 
 	void print() {
 		Box::print();
-		printf("\nШирина окна %d", win_width);
-		printf("\nВысота окна %d", win_height);
+		printf("\nГГЁГ°ГЁГ­Г  Г®ГЄГ­Г  %d", win_width);
+		printf("\nГ‚Г»Г±Г®ГІГ  Г®ГЄГ­Г  %d", win_height);
 	}
 #pragma endregion
 
@@ -267,13 +267,13 @@ public:
 			else box_cover = b_cover;
 		}
 		catch (int) {
-			cout << endl << "Отрицательное значение крышки коробки!" << endl;
+			cout << endl << "ГЋГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г®ГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ ГЄГ°Г»ГёГЄГЁ ГЄГ®Г°Г®ГЎГЄГЁ!" << endl;
 		}
 	}
 	int getHBoxCover() const { return box_cover; }
 #pragma endregion
 
-#pragma region Конструкторы и деструктор
+#pragma region ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г» ГЁ Г¤ГҐГ±ГІГ°ГіГЄГІГ®Г°
 	HBox(int hh = 0, int a = 0, int b = 0, int c = 0) : Box(a, b, c) {
 		try {
 			if (a < 0) {
@@ -283,7 +283,7 @@ public:
 			else box_cover = hh;
 		}
 		catch (int) {
-			cout << endl << "Отрицательное значение крышки коробки!" << endl;
+			cout << endl << "ГЋГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г®ГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ ГЄГ°Г»ГёГЄГЁ ГЄГ®Г°Г®ГЎГЄГЁ!" << endl;
 		}
 	}
 
@@ -291,14 +291,14 @@ public:
 		box_cover = box.box_cover;
 	}
 
-	//деструктор
+	//Г¤ГҐГ±ГІГ°ГіГЄГІГ®Г°
 	~HBox()
 	{
-		cout << "\nДеcтруктор сработал!\n";
+		cout << "\nГ„ГҐcГІГ°ГіГЄГІГ®Г° Г±Г°Г ГЎГ®ГІГ Г«!\n";
 	}
 #pragma endregion
 
-#pragma region Методы
+#pragma region ГЊГҐГІГ®Г¤Г»
 	int area() const {
 		int l = Box::getBoxLength();
 		int w = Box::getBoxWidth();
@@ -307,7 +307,7 @@ public:
 
 	void print() {
 		Box::print();
-		printf("\nВысота крышки %d", box_cover);
+		printf("\nГ‚Г»Г±Г®ГІГ  ГЄГ°Г»ГёГЄГЁ %d", box_cover);
 	}
 #pragma endregion
 
@@ -316,7 +316,7 @@ public:
 class WHBox : public WBox, public HBox
 {
 public:
-#pragma region Конструкторы и деструктор
+#pragma region ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г» ГЁ Г¤ГҐГ±ГІГ°ГіГЄГІГ®Г°
 	WHBox(int hh = 0, int ww = 0, int wh = 0, int a = 0, int b = 0, int c = 0) : Box(a, b, c) {
 		HBox::setBoxHeight(hh);
 		WBox::setWBoxHeight(wh);
@@ -330,11 +330,11 @@ public:
 	}
 
 	~WHBox() {
-		cout << "Деструктор класса WHBox сработал!" << endl;
+		cout << "Г„ГҐГ±ГІГ°ГіГЄГІГ®Г° ГЄГ«Г Г±Г±Г  WHBox Г±Г°Г ГЎГ®ГІГ Г«!" << endl;
 	}
 #pragma endregion
 
-#pragma region Методы
+#pragma region ГЊГҐГІГ®Г¤Г»
 	int area() const {
 		int h = WBox::getWBoxHeight();
 		int w = WBox::getWBoxWidth();
@@ -343,9 +343,9 @@ public:
 
 	void print() {
 		Box::print();
-		printf("\nШирина окна %d", WBox::getWBoxWidth());
-		printf("\nВысота окна %d", WBox::getWBoxHeight());
-		printf("\nВысота крышки %d", HBox::getBoxHeight());
+		printf("\nГГЁГ°ГЁГ­Г  Г®ГЄГ­Г  %d", WBox::getWBoxWidth());
+		printf("\nГ‚Г»Г±Г®ГІГ  Г®ГЄГ­Г  %d", WBox::getWBoxHeight());
+		printf("\nГ‚Г»Г±Г®ГІГ  ГЄГ°Г»ГёГЄГЁ %d", HBox::getBoxHeight());
 	}
 #pragma endregion
 };
@@ -404,76 +404,76 @@ int main()
 	const Box box234 (1,1,1);
 	cout << box234.area() << endl;
 	Box box;
-	printf("\nИнициализируем поля с помощью setters:");
+	printf("\nГ€Г­ГЁГ¶ГЁГ Г«ГЁГ§ГЁГ°ГіГҐГ¬ ГЇГ®Г«Гї Г± ГЇГ®Г¬Г®Г№ГјГѕ setters:");
 	box.setBoxHeight(1);
 	box.setBoxWidth(2);
 	box.setBoxLength(3);
-	printf("\nВыводим поля:");
+	printf("\nГ‚Г»ГўГ®Г¤ГЁГ¬ ГЇГ®Г«Гї:");
 	box.print();
 	printf("\n");
 
-	printf("\nКуб:");
+	printf("\nГЉГіГЎ:");
 	Box cube(2);
 	cube.print();
 	printf("\n");
 
-	printf("\nКонструктор с 2-мя параметрами:");
+	printf("\nГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г° Г± 2-Г¬Гї ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ГЁ:");
 	Box box1(1, 2);
 	box1.print();
 	printf("\n");
 
-	printf("\nКонструктор с 3-мя параметрами:");
+	printf("\nГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г° Г± 3-Г¬Гї ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ГЁ:");
 	Box box2(1, 2, 3);
 	box2.print();
 	printf("\n");
 
-	printf("\nКопируем объект:");
+	printf("\nГЉГ®ГЇГЁГ°ГіГҐГ¬ Г®ГЎГєГҐГЄГІ:");
 	Box box3 = box2;
 	box3.print();
 	printf("\n");
 
-	printf("\nПлощадь коробки = %d", box2.area());
+	printf("\nГЏГ«Г®Г№Г Г¤Гј ГЄГ®Г°Г®ГЎГЄГЁ = %d", box2.area());
 	printf("\n\n");
 
-	printf("Коробка с окошком:");
+	printf("ГЉГ®Г°Г®ГЎГЄГ  Г± Г®ГЄГ®ГёГЄГ®Г¬:");
 	WBox box_win(2, 3, 4, 5, 6);
 	box_win.print();
-	printf("\nПлощадь коробки с окошком = %d", box_win.area());
+	printf("\nГЏГ«Г®Г№Г Г¤Гј ГЄГ®Г°Г®ГЎГЄГЁ Г± Г®ГЄГ®ГёГЄГ®Г¬ = %d", box_win.area());
 	printf("\n\n");
 
-	printf("Коробка с крышкой:");
+	printf("ГЉГ®Г°Г®ГЎГЄГ  Г± ГЄГ°Г»ГёГЄГ®Г©:");
 	HBox box_cov(1, 2, 2, 2);
 	box_cov.print();
-	printf("\nПлощадь коробки c крышкой= %d", box_cov.area());
+	printf("\nГЏГ«Г®Г№Г Г¤Гј ГЄГ®Г°Г®ГЎГЄГЁ c ГЄГ°Г»ГёГЄГ®Г©= %d", box_cov.area());
 	printf("\n\n");
 
-	printf("Коробка с отрицательными длинами:");
+	printf("ГЉГ®Г°Г®ГЎГЄГ  Г± Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»Г¬ГЁ Г¤Г«ГЁГ­Г Г¬ГЁ:");
 	Box box7(-2, -2, -2);
 
-	printf("Коробка с неверной шириной окна:");
+	printf("ГЉГ®Г°Г®ГЎГЄГ  Г± Г­ГҐГўГҐГ°Г­Г®Г© ГёГЁГ°ГЁГ­Г®Г© Г®ГЄГ­Г :");
 	WHBox box72(1, 3, 1, 2, 2, 2);
 	printf("\n\n");
 
-	printf("Стек int-значений:\n");
+	printf("Г‘ГІГҐГЄ int-Г§Г­Г Г·ГҐГ­ГЁГ©:\n");
 	Stack<int> stack = Stack<int>();
 	for (int i = 1; i <= 10; i++)
 	{
 		stack.push(i);
 	}
 	stack.print();
-	printf("\nБерем 1-элемент %d\n", stack.pop());
-	printf("\nПечатаем полученный стек:\n");
+	printf("\nГЃГҐГ°ГҐГ¬ 1-ГЅГ«ГҐГ¬ГҐГ­ГІ %d\n", stack.pop());
+	printf("\nГЏГҐГ·Г ГІГ ГҐГ¬ ГЇГ®Г«ГіГ·ГҐГ­Г­Г»Г© Г±ГІГҐГЄ:\n");
 	stack.print();
 
-	printf("\nСтек double-значений:\n");
+	printf("\nГ‘ГІГҐГЄ double-Г§Г­Г Г·ГҐГ­ГЁГ©:\n");
 	Stack<double> doubleStack = Stack<double>();
 	for (int i = 1; i <= 10; i++)
 	{
 		doubleStack.push(i*10.01);
 	}
 	doubleStack.print();
-	printf("\nБерем 1-элемент %.2f\n", doubleStack.pop());
-	printf("\nПечатаем полученный стек:\n");
+	printf("\nГЃГҐГ°ГҐГ¬ 1-ГЅГ«ГҐГ¬ГҐГ­ГІ %.2f\n", doubleStack.pop());
+	printf("\nГЏГҐГ·Г ГІГ ГҐГ¬ ГЇГ®Г«ГіГ·ГҐГ­Г­Г»Г© Г±ГІГҐГЄ:\n");
 	doubleStack.print();
 	printf("\n\n\n\n\n\n\n\n");
 	return 0;
