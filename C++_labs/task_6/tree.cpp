@@ -119,13 +119,9 @@ void printTree(Tree *t) {
     printf("\n");
 }
 
-// recursive parser
-
-list<string> list_of_lexem; // will make recursive descent for this list
+list<string> list_of_lexem; 
 string cur_lex;
 
-// return list without first elem
-// if list was empty return empty list
 list<string> getNextList(list<string> & lst) {
 	if (lst.size() == 0) return lst;
 	list<string> ::const_iterator p = lst.begin();
@@ -138,7 +134,6 @@ list<string> getNextList(list<string> & lst) {
 	return newList;
 }
 
-// return tree_structure from parsing list
 Tree* makeTree(list<string> list) {
 	list_of_lexem = list;cat
 	Tree* p = com_sh();
@@ -220,8 +215,6 @@ void background(Tree *t) {
 	}
 }
 
-// shell command realisation
-// shell_command ::= <command_list>
 Tree* com_sh() {
 	Tree *t;
 	t = com_list();
@@ -232,8 +225,6 @@ Tree* com_sh() {
 	return t;
 }
 
-// command list realization
-// command_list ::= <conv> {; <conv>} [&, ;]
 Tree* com_list() {
 	Tree *t1, *t2, *t;
 	t = t1 = conv();
@@ -245,20 +236,7 @@ Tree* com_list() {
 		} else { // cur_lex == ";"
 			list_of_lexem = getNextList(list_of_lexem);
 		}
-		/*
-		if (cur_lex == "&") { // should be only last
-			list_of_lexem = getNextList(list_of_lexem);	
-			if (list_of_lexem.empty()) {
-				background(t1);
-				break;
-			} else {
-				error("operation & shoul be last", NULL);
-			}					
-		}
-		* */
-		//if (cur_lex == ";") {
-		//list_of_lexem = getNextList(list_of_lexem);
-		if (list_of_lexem.empty()) { // chek for the last ;
+		if (list_of_lexem.empty()) { 
 			break;
 		}
 		//}			
@@ -270,8 +248,6 @@ Tree* com_list() {
 	return t;
 }
 
-// conveir realization
-// conv ::= <command> {| <command>}
 Tree* conv() {
 	Tree *t1, *t2, *t;
 	t = t1 = command();
@@ -330,13 +306,6 @@ void clear_tree(Tree *t) {
 	clear_tree(t -> getPipe());
 	delete t;
 }
-
-
-
-
-
-
-
 
 
 
