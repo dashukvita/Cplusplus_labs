@@ -117,12 +117,11 @@ int is_com(Tree *t) {
 int exec_cd(Tree *t) 
 {
 	string adress = t -> getSecondArgv();
-	if (adress == "") { // only command cd here
+	if (adress == "") { 
 		chdir(getenv("HOME"));
         return 0;
 	}
-	// if at list one arg exist, try to go there
-    if (chdir(adress.c_str()) == -1) { // convert string to const char* here
+    if (chdir(adress.c_str()) == -1) { 
         fprintf(stderr, "cd: %s: no shuch file or directory\n", adress.c_str());
         return 1;
     }
@@ -231,23 +230,18 @@ int exec_conv(Tree *t, int p) {
 int exec_command(Tree *t, int in, int out, int next_in, int p, intlist **pfrgrnd) {
 	int status, pid;
 	if (is_com(t)) {
-		return sh_com(t); // execute cd, clear, exit
+		return sh_com(t); 
 	}
 
 	if ((pid = fork()) == 0) {
-		//cout << "in_son" << endl;
 		chng_iofiles(in, out, t);
-		//cout << "have changed" << endl;
 		close(next_in);
-		//cout << "have closed" << endl;
 		char** argv = makeArgs(t -> getArgv());
 		execvp(argv[0], argv);
-		//cout << "have execvp" << endl;
 		perror(t -> getFirstArgv().c_str());
 		exit(1);
 	}
 	if (t -> isBackground()) {
-	//printf("in backgrnd\n");
         waitpid(pid, &status, WNOHANG);
         add_elem(&bckgrnd, pid);
         if (WIFEXITED(status)) {
@@ -255,16 +249,13 @@ int exec_command(Tree *t, int in, int out, int next_in, int p, intlist **pfrgrnd
         }
     }
 	else if (p) {
-	//printf("in add elem\n");
         add_elem(pfrgrnd, pid);
         return 0;
     }
 	else {
-		//cout << "in waitpid" << endl;
 		waitpid(pid, &status, 0);
 	}
 	if (WIFEXITED(status)) {
-		//cout << "in WIFEXITED" << endl;
 		return WEXITSTATUS(status);
 	}
 	return 1;
