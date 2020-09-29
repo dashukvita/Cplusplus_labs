@@ -4,10 +4,10 @@ using namespace std;
 
 char c; 
 
-void gc() { cin >> c; }
+void gc() { cin >> c; } //считываем символ из входной цепочки
 
 bool scan_G() {
-	enum state { H, A, B, S, ERR };
+	enum state { H, A, B, S, ERR }; //множество состояний
 	state CS;
 	CS = H;
 
