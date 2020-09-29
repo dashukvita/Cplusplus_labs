@@ -8,3 +8,4 @@ padding-left:10px">
 <h4><a href="https://github.com/dashukvita/Cplusplus_labs/tree/master/C%2B%2B_labs/task_3">3. ДС и анализатор.</a></h4>
 <h4><a href="https://github.com/dashukvita/Cplusplus_labs/tree/master/C%2B%2B_labs/task_4">4. Реализация рекурсивного спуска (PC-метод).</a></h4>
 <h4><a href="https://github.com/dashukvita/Cplusplus_labs/tree/master/C%2B%2B_labs/task_5">5. Интерпретатор: do while.</a></h4>
+<h4><a href="https://github.com/dashukvita/Cplusplus_labs/tree/master/C%2B%2B_labs/task_6">6. MyShell.</a></h4>
