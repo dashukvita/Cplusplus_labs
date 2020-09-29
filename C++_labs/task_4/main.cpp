@@ -41,7 +41,7 @@ public:
                       }
 };
 
-/////////////////////  Êëàññ Ident  ////////////////////////////
+/////////////////////  Класс Ident  ////////////////////////////
 
 class Ident
 {
@@ -68,7 +68,7 @@ public:
          void         put_value   (int v){ value = v; }
 };
 
-//////////////////////  Êëàññ Tabl_ident  ///////////////////////
+//////////////////////  Класс Tabl_ident  ///////////////////////
 
 class Tabl_ident
 {
@@ -130,7 +130,7 @@ T Stack < T, max_size > :: pop ()
     throw "stack_is_empty";
 }
 
-/////////////////////////  Êëàññ Poliz  /////////////////////////////
+/////////////////////////  Класс Poliz  /////////////////////////////
 
 class Poliz
 {
@@ -173,7 +173,7 @@ public:
 
 Tabl_ident TID ( 100 );
 
-/////////////////////  Êëàññ Scanner  //////////////////////////////
+/////////////////////  Класс Scanner  //////////////////////////////
 
 class Scanner
 {
@@ -223,7 +223,7 @@ public:
          Lex          get_lex ();
 };
 
-// ïðîïèñàíû repeat,until
+// repeat,until
 char *
 Scanner::TW    [] = {"", "and", "begin", "bool", "do", "else", "end", "if", "false", "int", "not", "or", "program",
                             "read", "then", "true", "var", "while", "write","repeat","until", NULL};
@@ -361,7 +361,7 @@ Lex Scanner::get_lex ()
   } while (true);
 }
 
-///////////////////////////  Êëàññ Parser  /////////////////////////////////
+///////////////////////////  Класс Parser  /////////////////////////////////
 
 class Parser
 {
@@ -512,23 +512,23 @@ void Parser::S ()
   {
     gl();
     E();
-    eq_bool(); //ïðîâåðÿåì bool ëè ïîñëåäíèé ýëåìåíò â ñòåêå
+    eq_bool(); //проверка последнего элемента в стеке
     pl2 = prog.get_free ();
-    prog.blank(); // óêàçàòåëü íà ìåñòî ìåòêè pl2
-    prog.put_lex (Lex(POLIZ_FGO)); // ïåðåõîä ïî ëæè
+    prog.blank(); // указатель на место метки pl2
+    prog.put_lex (Lex(POLIZ_FGO)); 
     if (c_type == LEX_THEN)
     {
       gl();
       S();
       pl3 = prog.get_free();
-      prog.blank(); // óêàçàòåëü íà ìåñòî ìåòêè pl3
-      prog.put_lex (Lex(POLIZ_GO)); // ïåðåõîä
-      prog.put_lex (Lex(POLIZ_LABEL, prog.get_free()), pl2); // ìåòêà p12
+      prog.blank(); // указатель на место метки pl3
+      prog.put_lex (Lex(POLIZ_GO)); // переход
+      prog.put_lex (Lex(POLIZ_LABEL, prog.get_free()), pl2); // метка p12
       if (c_type == LEX_ELSE)
       {
         gl();
         S();
-        prog.put_lex (Lex(POLIZ_LABEL, prog.get_free()), pl3); // ìåòêà p13
+        prog.put_lex (Lex(POLIZ_LABEL, prog.get_free()), pl3); // метка p13
       }
       else
         throw curr_lex;
@@ -540,32 +540,32 @@ void Parser::S ()
   // pl0: if (!E) goto pl1; S; goto pl0; pl1:
   else if (c_type == LEX_WHILE)
   {
-    pl0=prog.get_free(); // ìåòêà pl0
+    pl0=prog.get_free(); // метка pl0
     gl();
     E();
     eq_bool();
     pl1=prog.get_free();
-    prog.blank(); // óêàçàòåëü íà ìåòêó pl1
-    prog.put_lex (Lex(POLIZ_FGO)); // ïåðåõîä ïî ëæè
+    prog.blank(); // указатель на метку pl1
+    prog.put_lex (Lex(POLIZ_FGO));
     if (c_type == LEX_DO)
     {
       gl();
       S();
       prog.put_lex (Lex (POLIZ_LABEL, pl0));
       prog.put_lex (Lex ( POLIZ_GO));
-      prog.put_lex (Lex ( POLIZ_LABEL, prog.get_free()), pl1); // ìåòêà pl1
+      prog.put_lex (Lex ( POLIZ_LABEL, prog.get_free()), pl1); // метка pl1
     }
     else
       throw curr_lex;
   }//end while1
 
-  // repeat S{;S} until E  // ïîêà E íå ñòàíåò ðàâíûì true
+  // repeat S{;S} until E  
   // pl0: S if (!E) goto pl0
 else if (c_type == LEX_REPEAT)
   {
-    pl0=prog.get_free();     // ìåòêà íà÷àëà âûïîëíåíèÿ öèêëà
-    gl();                    // ââîä ëåêñåìû
-    S();                     //
+    pl0=prog.get_free();     // метка начала выполнения цикла
+    gl();                    // ввод лексемы
+    S();                     
     while (c_type == LEX_SEMICOLON)
     {
       gl();
@@ -575,9 +575,9 @@ else if (c_type == LEX_REPEAT)
     {
       gl();
       E();
-      eq_bool();	//ïðîâåðÿåì bool ëè ïîñëåäíèé ýëåìåíò â ñòåêå
-      prog.put_lex (Lex (POLIZ_LABEL, pl0)); // ìåñòî â ñòåêå pl0
-      prog.put_lex (Lex(POLIZ_FGO)); // ïåðåõîä ïî ëæè
+      eq_bool();	//проверка последнего элемента
+      prog.put_lex (Lex (POLIZ_LABEL, pl0)); // место в стеке pl0
+      prog.put_lex (Lex(POLIZ_FGO)); 
     }
     else
       throw curr_lex;
