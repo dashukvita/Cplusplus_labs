@@ -8,12 +8,6 @@
 #include "tree.h"
 #include "exec.h"
 
-// exceptions:
-// 20 - CTRL+D
-// 21 exit command
-// 22 shell: syntax error
-
-
 using namespace std;
 
 intlist *bckgrnd;
@@ -35,7 +29,7 @@ int main()
     bckgrnd = NULL;
     
 	while (true) {
-		inv(); 			        //  invitation to enter
+		inv(); 			       
 		clear_tree(tr);
 		tr = NULL;			
 		clear_zombie(&bckgrnd);
@@ -45,27 +39,24 @@ int main()
 			list = makeList();
 			if (list.empty()) continue;
 		} catch (int e) {
-			if (e == 20) break; // CTRL+D
-		}		
-		//print_list(list);	
-		changeList(list);       // replace environment variables
+			if (e == 20) break; 
+		}			
+		changeList(list);       
 		try {	
 			tr = makeTree(list);
-			//printTree(tr);
 		} catch (int e) {
-			if (e == 22) continue; // shell: syntax error
+			if (e == 22) continue; 
 		} 
 			
 		try {	
 			exec_tree(tr);
 		} catch (int e) {
-			if (e == 21) {      // exit command
+			if (e == 21) {      
 				clear_tree(tr);
 				break;
 			}
 		}			
-    }     
-    //cout << "done!" << endl;    
+    }      
     return 0;
 }
 
