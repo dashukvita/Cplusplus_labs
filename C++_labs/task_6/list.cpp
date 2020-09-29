@@ -6,14 +6,12 @@
 
 using namespace std;
 
-char c;                     // current simbol
-list<string> lexem_list;    // list for return
+char c;                     
+list<string> lexem_list;    
 
-void gc() { // read next simbol // use cin.get() to spaces and '\n'
-	//cout << "in gc" << endl;
+void gc() { 
 	c = cin.get();
-	//cout << "after get" << endl;
-	if (cin.eof()) throw 20; // CTRL+D handler
+	if (cin.eof()) throw 20; 
 }  
 
 void print_list(list<string> & lst) {
@@ -30,7 +28,7 @@ int is_special(char c)
 	if (c == ';' || c == '<' || c == '|') {
 		return 1;
 	}
-	if (c == '>') { // can be simbol >>
+	if (c == '>') { 
 		return 2;
 	}
 	return 0;
@@ -42,11 +40,11 @@ void parsing_error() {
 
 void parse_command() {
 	enum state {
-		START,       // begin state
-		WORD,        // read word here
-		IN_QUOTES,   // read word in breakets, for use space, exmp: "my file.txt"
-		SPECIAL2,    // state for double simbol >>  
-		END          // end state
+		START,       
+		WORD,       
+		IN_QUOTES,   
+		SPECIAL2,    
+		END          
 	};
 
 	state current_state; 
@@ -59,7 +57,6 @@ void parse_command() {
 		gc();
 		switch (current_state) {
 			case START: {
-				//printf("START\n");
 				s = "";
 				if (c == ' ' || c == '\t') {
 					current_state = START;
@@ -86,7 +83,6 @@ void parse_command() {
 				break;
 			}
 			case WORD: {
-				//printf("WORD\n");
 				if (c == ' ' || c == '\t') {
 					current_state = START;
 					lexem_list.push_back(s);
@@ -113,7 +109,6 @@ void parse_command() {
 				break;
 			}
 			case IN_QUOTES: {
-				//printf("IN_QUOTES\n");
 				if (c == '\"') {
 					current_state = START;
 					lexem_list.push_back(s);
@@ -128,8 +123,7 @@ void parse_command() {
 				}
 				break;
 			}
-			case SPECIAL2: { // get here, only if > was put
-				//printf("SPECIAL2\n");
+			case SPECIAL2: { 
 				if (is_special(c) == 1) {
 					current_state = START;
 					lexem_list.push_back(s);
@@ -171,9 +165,7 @@ void parse_command() {
 /* ----------------------------------------------------------------- */
 list<string> makeList() {
 	lexem_list.clear();
-	//cout << "after lexem_list.clear" << endl;
 	parse_command();
-	//cout << "after parse_command" << endl;
 	return lexem_list;
 }
 
