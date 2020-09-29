@@ -13,7 +13,7 @@ void T();
 void F();
 
 void gc() {
-	cin >> c;
+	cin >> c; //считать очередной символ
 }
 
 void S() {
