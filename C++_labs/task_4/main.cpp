@@ -20,11 +20,10 @@ enum type_of_lex
   POLIZ_GO, /*40*/
   POLIZ_FGO, /*41*/
   POLIZ_TO, //42
-  LEX_REPEAT, /*42 - добавлена лексема*/   //43
-  LEX_UNTIL  /*43 - добавлена лексема*/  //44
+  LEX_REPEAT, /*42 
+  LEX_UNTIL  /*43 
   };
 
-/////////////////////////  Класс Lex  //////////////////////////
 
 class Lex
 {
@@ -42,7 +41,7 @@ public:
                       }
 };
 
-/////////////////////  Класс Ident  ////////////////////////////
+/////////////////////  ГЉГ«Г Г±Г± Ident  ////////////////////////////
 
 class Ident
 {
@@ -69,7 +68,7 @@ public:
          void         put_value   (int v){ value = v; }
 };
 
-//////////////////////  Класс Tabl_ident  ///////////////////////
+//////////////////////  ГЉГ«Г Г±Г± Tabl_ident  ///////////////////////
 
 class Tabl_ident
 {
@@ -131,7 +130,7 @@ T Stack < T, max_size > :: pop ()
     throw "stack_is_empty";
 }
 
-/////////////////////////  Класс Poliz  /////////////////////////////
+/////////////////////////  ГЉГ«Г Г±Г± Poliz  /////////////////////////////
 
 class Poliz
 {
@@ -174,7 +173,7 @@ public:
 
 Tabl_ident TID ( 100 );
 
-/////////////////////  Класс Scanner  //////////////////////////////
+/////////////////////  ГЉГ«Г Г±Г± Scanner  //////////////////////////////
 
 class Scanner
 {
@@ -224,7 +223,7 @@ public:
          Lex          get_lex ();
 };
 
-// прописаны repeat,until
+// ГЇГ°Г®ГЇГЁГ±Г Г­Г» repeat,until
 char *
 Scanner::TW    [] = {"", "and", "begin", "bool", "do", "else", "end", "if", "false", "int", "not", "or", "program",
                             "read", "then", "true", "var", "while", "write","repeat","until", NULL};
@@ -362,7 +361,7 @@ Lex Scanner::get_lex ()
   } while (true);
 }
 
-///////////////////////////  Класс Parser  /////////////////////////////////
+///////////////////////////  ГЉГ«Г Г±Г± Parser  /////////////////////////////////
 
 class Parser
 {
@@ -513,23 +512,23 @@ void Parser::S ()
   {
     gl();
     E();
-    eq_bool(); //проверяем bool ли последний элемент в стеке
+    eq_bool(); //ГЇГ°Г®ГўГҐГ°ГїГҐГ¬ bool Г«ГЁ ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ Гў Г±ГІГҐГЄГҐ
     pl2 = prog.get_free ();
-    prog.blank(); // указатель на место метки pl2
-    prog.put_lex (Lex(POLIZ_FGO)); // переход по лжи
+    prog.blank(); // ГіГЄГ Г§Г ГІГҐГ«Гј Г­Г  Г¬ГҐГ±ГІГ® Г¬ГҐГІГЄГЁ pl2
+    prog.put_lex (Lex(POLIZ_FGO)); // ГЇГҐГ°ГҐГµГ®Г¤ ГЇГ® Г«Г¦ГЁ
     if (c_type == LEX_THEN)
     {
       gl();
       S();
       pl3 = prog.get_free();
-      prog.blank(); // указатель на место метки pl3
-      prog.put_lex (Lex(POLIZ_GO)); // переход
-      prog.put_lex (Lex(POLIZ_LABEL, prog.get_free()), pl2); // метка p12
+      prog.blank(); // ГіГЄГ Г§Г ГІГҐГ«Гј Г­Г  Г¬ГҐГ±ГІГ® Г¬ГҐГІГЄГЁ pl3
+      prog.put_lex (Lex(POLIZ_GO)); // ГЇГҐГ°ГҐГµГ®Г¤
+      prog.put_lex (Lex(POLIZ_LABEL, prog.get_free()), pl2); // Г¬ГҐГІГЄГ  p12
       if (c_type == LEX_ELSE)
       {
         gl();
         S();
-        prog.put_lex (Lex(POLIZ_LABEL, prog.get_free()), pl3); // метка p13
+        prog.put_lex (Lex(POLIZ_LABEL, prog.get_free()), pl3); // Г¬ГҐГІГЄГ  p13
       }
       else
         throw curr_lex;
@@ -541,31 +540,31 @@ void Parser::S ()
   // pl0: if (!E) goto pl1; S; goto pl0; pl1:
   else if (c_type == LEX_WHILE)
   {
-    pl0=prog.get_free(); // метка pl0
+    pl0=prog.get_free(); // Г¬ГҐГІГЄГ  pl0
     gl();
     E();
     eq_bool();
     pl1=prog.get_free();
-    prog.blank(); // указатель на метку pl1
-    prog.put_lex (Lex(POLIZ_FGO)); // переход по лжи
+    prog.blank(); // ГіГЄГ Г§Г ГІГҐГ«Гј Г­Г  Г¬ГҐГІГЄГі pl1
+    prog.put_lex (Lex(POLIZ_FGO)); // ГЇГҐГ°ГҐГµГ®Г¤ ГЇГ® Г«Г¦ГЁ
     if (c_type == LEX_DO)
     {
       gl();
       S();
       prog.put_lex (Lex (POLIZ_LABEL, pl0));
       prog.put_lex (Lex ( POLIZ_GO));
-      prog.put_lex (Lex ( POLIZ_LABEL, prog.get_free()), pl1); // метка pl1
+      prog.put_lex (Lex ( POLIZ_LABEL, prog.get_free()), pl1); // Г¬ГҐГІГЄГ  pl1
     }
     else
       throw curr_lex;
   }//end while1
 
-  // repeat S{;S} until E  // пока E не станет равным true
+  // repeat S{;S} until E  // ГЇГ®ГЄГ  E Г­ГҐ Г±ГІГ Г­ГҐГІ Г°Г ГўГ­Г»Г¬ true
   // pl0: S if (!E) goto pl0
 else if (c_type == LEX_REPEAT)
   {
-    pl0=prog.get_free();     // метка начала выполнения цикла
-    gl();                    // ввод лексемы
+    pl0=prog.get_free();     // Г¬ГҐГІГЄГ  Г­Г Г·Г Г«Г  ГўГ»ГЇГ®Г«Г­ГҐГ­ГЁГї Г¶ГЁГЄГ«Г 
+    gl();                    // ГўГўГ®Г¤ Г«ГҐГЄГ±ГҐГ¬Г»
     S();                     //
     while (c_type == LEX_SEMICOLON)
     {
@@ -576,9 +575,9 @@ else if (c_type == LEX_REPEAT)
     {
       gl();
       E();
-      eq_bool();	//проверяем bool ли последний элемент в стеке
-      prog.put_lex (Lex (POLIZ_LABEL, pl0)); // место в стеке pl0
-      prog.put_lex (Lex(POLIZ_FGO)); // переход по лжи
+      eq_bool();	//ГЇГ°Г®ГўГҐГ°ГїГҐГ¬ bool Г«ГЁ ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ Гў Г±ГІГҐГЄГҐ
+      prog.put_lex (Lex (POLIZ_LABEL, pl0)); // Г¬ГҐГ±ГІГ® Гў Г±ГІГҐГЄГҐ pl0
+      prog.put_lex (Lex(POLIZ_FGO)); // ГЇГҐГ°ГҐГµГ®Г¤ ГЇГ® Г«Г¦ГЁ
     }
     else
       throw curr_lex;
