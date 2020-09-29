@@ -19,8 +19,8 @@ enum type_of_lex
   POLIZ_GO, /*40*/
   POLIZ_FGO, /*41*/
   POLIZ_TO, //42
-  LEX_REPEAT, /*42 
-  LEX_UNTIL  /*43 
+  LEX_REPEAT, /*42 - добавлена лексема*/
+  LEX_UNTIL  /*43 - добавлена лексема*/
   };
 
 
